@@ -1,0 +1,20 @@
+.table th {
+    min-width: 300px;
+    word-break: break-word;
+    background-color: #8c8c8c;
+}
+.table {
+    height: 500px;
+}
+.sameLine {
+    display: inline-block;
+}
+.myChart{
+    height: 300px;
+    width: 1000px;
+  }
+  
+  .myChartWrapper{
+    /* width: 600px; */
+    overflow-x: scroll;
+  }

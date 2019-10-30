@@ -1,0 +1,144 @@
+<div class="container">
+      <div class="row">
+         <input type="text" [(ngModel)] = "deviceId"  class="form-control col-md-2" style="margin: 10px;" placeholder="Enter device id">
+         <mat-form-field class="col-md-2">
+               <input matInput [matDatepicker]="picker1" [(ngModel)] = "matStartDate" (dateChange)="startDateFun('change', $event)" placeholder="Enter Start Date" [formControl]="startDateForm">
+               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+               <mat-datepicker #picker1></mat-datepicker>
+         </mat-form-field>
+         <mat-form-field class="col-md-2">
+               <input matInput [matDatepicker]="picker2" [(ngModel)] = "matEndDate" (dateChange)="endDateFun('change', $event)" placeholder="Enter End Date" [formControl]="endDateForm">
+               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+               <mat-datepicker #picker2></mat-datepicker>
+       </mat-form-field>
+         <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="downloadFile()">Download File</button>
+         <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="getFileData()">Read File</button>
+         <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="print()">Print</button>
+      </div>
+      <div class="row" *ngIf="decodedA1Data">
+         <div class="col-md-6">
+            <div class="col-md-7 sameLine">
+               <p>Product Version:</p>
+            </div>
+            <div class="col-md-4 sameLine">
+               {{decodedA1Data.pv}}
+            </div>
+            <div class="col-md-7 sameLine">
+               <p>Reporting Interval(min):</p>
+            </div>
+            <div class="col-md-4 sameLine">
+               {{decodedA1Data.uploadInterval}}
+            </div>
+            <div class="col-md-7 sameLine">
+               <p>Sensor Sampling Interval(sec):</p>
+            </div>
+            <div class="col-md-4 sameLine">
+               {{binarySamplingInterval}}
+            </div>
+            <div class="col-md-7 sameLine">
+               <p>Temperature High Threshold:</p>
+            </div>
+            <div class="col-md-4 sameLine">
+               {{decodedA1Data.highThreshold}}
+            </div>
+            <div class="col-md-7 sameLine">
+               <p>Temperature Low Threshold:</p>
+            </div>
+            <div class="col-md-4 sameLine">
+               {{decodedA1Data.lowThreshold}}
+            </div>
+            <div class="col-md-7 sameLine">
+               <p>Operation Mode:</p>
+            </div>
+            <div class="col-md-4 sameLine">
+               {{decodedA1Data.mode}}
+            </div>
+            <div class="col-md-7 sameLine">
+               <p>No of Samples:</p>
+            </div>
+            <div class="col-md-4 sameLine">
+               {{noOfSamples}}
+            </div>
+            <div class="col-md-7 sameLine">
+               <p>No of A4 Samples:</p>
+            </div>
+            <div class="col-md-4 sameLine">
+               {{noOfA4Data}}
+            </div>
+         </div>
+         <div class="col-md-6">
+               <div class="myChartWrapper">
+               <div class="myChart">
+                     <canvas
+                         baseChart
+                         [chartType]="'line'"
+                         [datasets]="chartData"
+                         [labels]="chartLabels"
+                         [options]="chartOptions"
+                         [legend]="true"
+                         (chartClick)="onChartClick($event)">
+                     </canvas>
+                   </div>
+                   </div>
+         </div>
+      </div>
+      <div class="row">
+         <table matSort (matSortChange)="sortData($event)" class="table table-responsive table-hover table-set-width" border="1">
+            <thead>
+               <!-- <th mat-sort-header="ust">
+                  <h5>Time in UST</h5>
+               </th> -->
+               <th mat-sort-header="time">
+                  <h5> Time </h5>
+               </th>
+               <th mat-sort-header="temp">
+                  <h5> Temperature </h5>
+               </th>
+               <th>
+                  <h5> Battery % </h5>
+               </th>
+               <th>
+                  <h5> Movement </h5>
+               </th>
+               <th>
+                  <h5> Logger </h5>
+               </th>
+               <th>
+                  <h5> Sensor </h5>
+               </th>
+               <th>
+                  <h5> Location </h5>
+               </th>
+               <th>
+                  <h5> LBS Mode </h5>
+               </th>
+               <th>
+                  <h5> Debug Info </h5>
+               </th>
+            </thead>
+            <tbody>
+               <ng-container *ngFor="let data of newArrayToDisplay | unique">
+                  <tr>
+                     <!-- <td>{{data.ust}}</td> -->
+                     <td>{{data.time}}</td>
+                     <td>{{data.temp}}</td>
+                     <td>{{data.battery}}</td>
+                     <td>{{data.movement}}</td>
+                     <td>{{data.logger}}</td>
+                     <td>{{data.sensor}}</td>
+                     <td>{{data.lat}} , {{data.long}}</td>
+                     <td>{{data.lbs}}</td>
+                     <td>
+                        <ul>
+                           <li>CGREG: {{data.debug.cgReg}}</li>
+                           <li>MQTT Retry: {{data.debug.mqtt}}</li>
+                           <li>Signal Strength: {{data.debug.signal}}</li>
+                           <li>GPS: {{data.debug.gps}}</li>
+                        </ul>
+                     </td>
+                  </tr>
+               </ng-container>
+            </tbody>
+         </table>
+      </div>
+   </div>
