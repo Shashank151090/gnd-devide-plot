@@ -3,7 +3,7 @@ import { ValueTransformer } from '@angular/compiler/src/util';
 import { timestamp } from 'rxjs/operators';
  
 @Pipe({
-    name:'fileData'
+    name:'filterPipe'
 })
 export class filterPipe implements PipeTransform {
     startValue = 0;
