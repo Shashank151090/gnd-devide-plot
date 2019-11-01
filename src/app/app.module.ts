@@ -21,6 +21,7 @@ import { UniquePipe } from './unique.pipe';
     AppComponent,
     FileDataComponent,
     UniquePipe,
+	filterPipe
   ],
   imports: [
     BrowserModule,
