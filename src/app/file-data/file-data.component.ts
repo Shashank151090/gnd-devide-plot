@@ -337,9 +337,13 @@ export class FileDataComponent implements OnInit {
 	  print() {
 
 		this._fileUtil.convertArrayToCsv(this.newArrayToDisplay,this.decodedA1Data);
-		//   this.api.deleteFiles().subscribe((data)=>{
-		// 	  console.log("File deleted successfully");
-		//   });
+	
+	  }
+	  
+	  deleteFile() {
+		  	  this.api.deleteFiles().subscribe((data)=>{
+		 	  console.log("File deleted successfully");
+		  });
 	  }
 	 
 

@@ -14,6 +14,8 @@
          <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="downloadFile()">Download File</button>
          <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="getFileData()">Read File</button>
          <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="print()">Print</button>
+		 <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="deleteFile()">Delete</button>
+		 
       </div>
       <div class="row" *ngIf="decodedA1Data">
          <div class="col-md-6">
