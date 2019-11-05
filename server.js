@@ -30,6 +30,7 @@ app.use(express.static(__dirname + '/dist/csvReader'));
 app.get('/*', function(req,res) {
     
     res.sendFile(path.join(__dirname+'/dist/csvReader/index.html'));
+    console.log(path.join(__dirname+'/dist/csvReader/index.html'))
     });
 
 app.get('/getFile', function(req, res) {
