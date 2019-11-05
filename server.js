@@ -25,12 +25,11 @@ app.use(function(req, res, next) {
 //     var test = path.join(os.homedir(),fileLocation)
 //     console.log(os.userInfo().username)
 // });
-app.use(express.static(__dirname + '/dist/csvReader'));
+app.use(express.static(__dirname + '/dist/device-plot'));
 
 app.get('/*', function(req,res) {
     
-    res.sendFile(path.join(__dirname+'/dist/csvReader/index.html'));
-    console.log(path.join(__dirname+'/dist/csvReader/index.html'))
+    res.sendFile(path.join(__dirname+'/dist/device-plot/index.html'));
     });
 
 app.get('/getFile', function(req, res) {
