@@ -362,6 +362,7 @@ export class FileDataComponent implements OnInit {
 			   
 		  });
 		  this.disableDownload = false;
+		  window.location.reload();
 	  }
 	 
 

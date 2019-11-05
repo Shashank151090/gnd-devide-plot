@@ -76,7 +76,7 @@ export class filterPipe implements PipeTransform {
                 array2.push(arrayA4);
                 A4counter = 0;
                 arrayA4 = []
-                break;
+                // break;
             } 
             
            }
