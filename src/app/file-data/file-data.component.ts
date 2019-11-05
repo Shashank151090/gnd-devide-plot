@@ -114,11 +114,11 @@ export class FileDataComponent implements OnInit {
 		let monthEnd = mmEnd.toString();
 		let yearEnd = yyyyEnd.toString();
 		if (ddStart < 10) {
-			dateStart = '0' + ddStart;
+			dateEnd = '0' + ddEnd;
 		}
 
 		if (mmStart < 10) {
-			monthStart = '0' + mmStart;
+			monthEnd = '0' + mmEnd;
 		}
 		let endDate = yearEnd + monthEnd + dateEnd;
 
