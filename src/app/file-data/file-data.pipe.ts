@@ -35,7 +35,7 @@ export class filterPipe implements PipeTransform {
                      this.startValue = i;
                     //  console.log("Start value: ", this.startValue)
                 }
-                else if (counter ==2) {
+                else if (counter ==2 || i == (value.length)-1) {
                     this.endValue = i;
                     // console.log("End value: ", this.endValue)
                     counter = 0;
