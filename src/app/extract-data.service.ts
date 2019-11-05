@@ -20,7 +20,7 @@ export class ExtractDataService {
     data = data.slice(4);     
     data.substring(0,2);
     data = data.slice(2);
-    let batteryPer = data.substring(0,2);
+    let batteryPer = parseInt(data.substring(0,2),16);
     data = data.slice(2);     
     let dataSamples = data.substring(0,(numberOfSamples*6));
     data = data.slice(numberOfSamples*6);
