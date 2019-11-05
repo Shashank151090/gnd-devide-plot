@@ -126,7 +126,7 @@ export class FileDataComponent implements OnInit {
 		let dateEnd = ddEnd.toString();
 		let monthEnd = mmEnd.toString();
 		let yearEnd = yyyyEnd.toString();
-		if (ddStart < 10) {
+		if (ddEnd < 10) {
 			dateEnd = '0' + ddEnd;
 		}
 
@@ -257,7 +257,7 @@ export class FileDataComponent implements OnInit {
 					if (sec < 10) {
 						seconds = '0' + sec;
 					}
-					let todayDate =day+'-'+month+'-'+year +' ' + hours+':'+minute+':'+seconds;
+					let todayDate =year+'-'+month+'-'+day +' ' + hours+':'+minute+':'+seconds;
 					timeFrame.push(todayDate);
 					ustFrame.push(ust);
 					batteryFrame.push(this.decodedA4Data[i].batteryPer);
