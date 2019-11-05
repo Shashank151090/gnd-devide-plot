@@ -50,7 +50,10 @@ export class FileDataComponent implements OnInit {
 	A4Data = [];
 	noOfA4Data;
 	downloadingFile: boolean = false;
-	disableDownload: boolean = false;
+	disableDownload: boolean = true;
+	disableRead: boolean = true;
+	disablePrint: boolean = true;
+	disableDelete: boolean = true;
 	showProcessingMessage: boolean = false;
 	resumeDownload: boolean = false;
 	tempRange: any = [];
@@ -85,7 +88,17 @@ export class FileDataComponent implements OnInit {
 		this.endDate = this.matEndDate;
 	  }
 
+	  deviceIdCheck() {
+		  if(this.deviceId) {
+			  this.disableDownload = false;
+		  }
+		  else {
+			  this.disableDownload = true;
+		  }
+	  }
 	downloadFile() {
+		this.disableDownload = true;
+		this.disableRead = false;
 		// return new Promise((resolve, reject) => {
 
 		let start = this.startDate;
@@ -130,6 +143,9 @@ export class FileDataComponent implements OnInit {
 	}
 
 	getFileData() {
+		this.disableRead = true;
+		this.disablePrint = false;
+		this.disableDelete = false;
 		this.api.getFiles().subscribe((csvData) => {
 			let csvRecordsArray = (csvData as string).split(/\r\n|\n/);
 			let headerLength = -1;
@@ -335,15 +351,17 @@ export class FileDataComponent implements OnInit {
 	  }
 
 	  print() {
-
+		this.disablePrint = true;
 		this._fileUtil.convertArrayToCsv(this.newArrayToDisplay,this.decodedA1Data);
 	
 	  }
 	  
 	  deleteFile() {
 		  	  this.api.deleteFiles().subscribe((data)=>{
-		 	  console.log("File deleted successfully");
+			   console.log("File deleted successfully");
+			   
 		  });
+		  this.disableDownload = false;
 	  }
 	 
 

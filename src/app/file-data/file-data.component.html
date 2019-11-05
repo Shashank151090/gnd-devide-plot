@@ -1,6 +1,6 @@
 <div class="container">
       <div class="row">
-         <input type="text" [(ngModel)] = "deviceId"  class="form-control col-md-2" style="margin: 10px;" placeholder="Enter device id">
+         <input type="text" [(ngModel)] = "deviceId" (blur)="deviceIdCheck()" class="form-control col-md-2" style="margin: 10px;" placeholder="Enter device id">
          <mat-form-field class="col-md-2">
                <input matInput [matDatepicker]="picker1" [(ngModel)] = "matStartDate" (dateChange)="startDateFun('change', $event)" placeholder="Enter Start Date" [formControl]="startDateForm">
                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -12,9 +12,9 @@
                <mat-datepicker #picker2></mat-datepicker>
        </mat-form-field>
          <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="downloadFile()">Download File</button>
-         <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="getFileData()">Read File</button>
-         <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="print()">Print</button>
-		 <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="deleteFile()">Delete</button>
+         <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableRead" (click)="getFileData()">Read File</button>
+         <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disablePrint" (click)="print()">Print</button>
+		 <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDelete" (click)="deleteFile()">Delete</button>
 		 
       </div>
       <div class="row" *ngIf="decodedA1Data">
