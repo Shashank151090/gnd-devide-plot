@@ -20,11 +20,16 @@ app.use(function(req, res, next) {
   });   
  
 //ROUTES WILL GO HERE
-app.get('/', function(req, res) {
-    res.json({ message: 'WELCOME' });   
-    var test = path.join(os.homedir(),fileLocation)
-    console.log(os.userInfo().username)
-});
+// app.get('/', function(req, res) {
+//     res.json({ message: 'WELCOME' });   
+//     var test = path.join(os.homedir(),fileLocation)
+//     console.log(os.userInfo().username)
+// });
+
+app.get('/*', function(req,res) {
+    
+    res.sendFile(path.join(__dirname+'/dist/csvReader/index.html'));
+    });
 
 app.get('/getFile', function(req, res) {
     console.log("inside getFile server.js")
