@@ -25,6 +25,7 @@ app.use(function(req, res, next) {
 //     var test = path.join(os.homedir(),fileLocation)
 //     console.log(os.userInfo().username)
 // });
+app.use(express.static(__dirname + '/dist/csvReader'));
 
 app.get('/*', function(req,res) {
     
