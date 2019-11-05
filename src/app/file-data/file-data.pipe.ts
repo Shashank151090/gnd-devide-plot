@@ -61,6 +61,25 @@ export class filterPipe implements PipeTransform {
                
                 //  arrayToReturn.push(arrayTemp);
            }
+           else {
+            this.startValue = i;
+
+            for( let j= this.startValue; j< this.endValue; j++) {
+                let A4value = value[j]
+                if(A4value[3] && A4value[3].startsWith('A4')) {
+                    // this.timeStampA4 = A4value[0];
+                    arrayA4.push(A4value);
+                    A4counter ++;
+                }
+            }
+            if(A4counter > 0) {
+                array2.push(arrayA4);
+                A4counter = 0;
+                arrayA4 = []
+                break;
+            } 
+            
+           }
            
         }
         return array2[0];

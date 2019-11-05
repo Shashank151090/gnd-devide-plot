@@ -65,36 +65,52 @@ export class ExtractDataService {
     return(createReturnObjA6);   
   }
   extractA1Data(data) {
-    let originalData = data;
-    data = data.slice(26);
-    let hwv = data.substring(0,4);
-    data = data.slice(4);     
-    let swv = data.substring(0,4);
-    data = data.slice(4); 
-    let pv = data.substring(0,4);
-    data = data.slice(4);
-    let uploadInterval = data.substring(0,4);
-    data = data.slice(4);
-    let samplingInterval = data.substring(0,4);
-    data = data.slice(4);
-    let highThreshold = data.substring(0,4);
-    data = data.slice(4);
-    let lowThreshold = data.substring(0,4);
-    data = data.slice(4);
-    let tbd2 = data.substring(0,6);
-    data = data.slice(6);
-    let mode = data.substring(0,2);
-    let createReturnObjA6 = {
-      "hwv": hwv,
-      "swv": swv,
-      "pv": parseInt(pv,16),
-      "uploadInterval": parseInt(uploadInterval,16),
-      "samplingInterval": samplingInterval,
-      "highThreshold": parseInt(highThreshold,16),
-      "lowThreshold": parseInt(lowThreshold,16),
-      "mode": mode = '01'? 'Standard Mode': 'Alert Mode'
-    } 
-    return(createReturnObjA6);   
+    if(data) {
+      let originalData = data;
+      data = data.slice(26);
+      let hwv = data.substring(0,4);
+      data = data.slice(4);     
+      let swv = data.substring(0,4);
+      data = data.slice(4); 
+      let pv = data.substring(0,4);
+      data = data.slice(4);
+      let uploadInterval = data.substring(0,4);
+      data = data.slice(4);
+      let samplingInterval = data.substring(0,4);
+      data = data.slice(4);
+      let highThreshold = data.substring(0,4);
+      data = data.slice(4);
+      let lowThreshold = data.substring(0,4);
+      data = data.slice(4);
+      let tbd2 = data.substring(0,6);
+      data = data.slice(6);
+      let mode = data.substring(0,2);
+      let createReturnObjA6 = {
+        "hwv": hwv,
+        "swv": swv,
+        "pv": parseInt(pv,16),
+        "uploadInterval": parseInt(uploadInterval,16)?parseInt(uploadInterval,16): 60,
+        "samplingInterval": samplingInterval?samplingInterval: 900,
+        "highThreshold": parseInt(highThreshold,16),
+        "lowThreshold": parseInt(lowThreshold,16),
+        "mode": mode = '01'? 'Standard Mode': 'Alert Mode'
+      } 
+      return(createReturnObjA6);
+    }
+    else {
+      let createReturnObjA6 = {
+        "hwv": 'NA',
+        "swv": 'NA',
+        "pv": 'NA',
+        "uploadInterval": 60,
+        "samplingInterval": 384,
+        "highThreshold": 'NA',
+        "lowThreshold": 'NA',
+        "mode":'NA'
+      } 
+      return(createReturnObjA6);
+    }
+       
   }
 
   extractDebugByteData(data) {
