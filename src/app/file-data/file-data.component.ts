@@ -111,11 +111,14 @@ export class FileDataComponent implements OnInit {
 	  endDateFun(type: string, event: MatDatepickerInputEvent<Date>) {
 		console.log(this.matEndDate);
 		this.endDate = this.matEndDate;
+		this.deviceIdCheck()
 	  }
 
 	  deviceIdCheck() {
 		  if(this.deviceId) {
-			  this.disableDownload = false;
+			  if(this.matStartDate && this.matEndDate){
+				this.disableDownload = false;
+			  }
 		  }
 		  else {
 			  this.disableDownload = true;

@@ -4,7 +4,7 @@ import { HttpClientModule  } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {MatSortModule,MatTableModule,MatInputModule,MatDialogModule,MatDatepickerModule,MatNativeDateModule,MatFormFieldModule} from '@angular/material';
+import {MatSortModule,MatTableModule,MatInputModule,MatTooltipModule,MatDialogModule,MatDatepickerModule,MatNativeDateModule,MatFormFieldModule} from '@angular/material';
 
 
 
@@ -32,6 +32,7 @@ import { UniquePipe } from './unique.pipe';
     ChartsModule,
     HttpClientModule,
     MatSortModule,
+    MatTooltipModule,
     MatDialogModule,
     MatFormFieldModule,
     MatDatepickerModule,
