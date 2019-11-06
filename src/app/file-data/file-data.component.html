@@ -14,7 +14,7 @@
          <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDownload" (click)="downloadFile()">Download File</button>
          <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableRead" (click)="getFileData()">Read File</button>
          <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disablePrint" (click)="print()">Print</button>
-		 <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDelete" (click)="deleteFile()">Delete</button>
+         <button class="btn btn-primary" style="margin: 10px;" [disabled] = "disableDelete" (click)="deleteFile()">Delete</button>
 		 
       </div>
       <div class="row" *ngIf="decodedA1Data">
@@ -70,6 +70,7 @@
          </div>
          <div class="col-md-6">
                <div class="myChartWrapper">
+               <button class="btn btn-default" style="margin: 10px;" [disabled] = "disablePrint" (click)= "viewFullScreen()"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
                <div class="myChart">
                      <canvas
                          baseChart

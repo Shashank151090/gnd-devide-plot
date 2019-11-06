@@ -1,6 +1,7 @@
 import {
 	Component,
-	OnInit
+	OnInit,
+	Inject
 } from '@angular/core';
 import {
 	ApiService
@@ -21,8 +22,14 @@ import {
 import {Sort} from '@angular/material/sort';
 import {FormControl} from '@angular/forms';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-
+export interface DialogData {
+	chartData: any,
+	chartLabels: any,
+	legend: any,
+	chartOptions: any
+  }
 
 @Component({
 	selector: 'app-file-data',
@@ -38,6 +45,7 @@ export class FileDataComponent implements OnInit {
 	fileImportInput: any;
 	deviceId: string;
 	matStartDate: Date;
+	sortedGraphData: any;
 	matEndDate: Date;
 	deviceIdFromFile: string;
 	csvRecords = [];
@@ -74,10 +82,27 @@ export class FileDataComponent implements OnInit {
 		private _fileUtil: FileUtil,
 		private filterPipe: filterPipe,
 		private extractService: ExtractDataService,
+		public dialog: MatDialog
 		// this.sortedData = this.newArrayToDisplay.slice();
 	) {}
 
 	ngOnInit() {}
+
+	viewFullScreen() {
+		let chartOptions = {
+			responsive: true,
+			maintainAspectRatio: false
+		}
+		const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+			width: '90%',
+			data: {chartData: this.chartData, chartLabels: this.chartLabels, legend: { display: true, labels: { fontColor: 'black' }}, chartOptions: chartOptions}
+		  });
+	  
+		  dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed');
+		  });
+		}
+		
 
 	startDateFun(type: string, event: MatDatepickerInputEvent<Date>) {
 		console.log(this.matStartDate);
@@ -367,3 +392,21 @@ export class FileDataComponent implements OnInit {
 	 
 
 }
+
+@Component({
+	selector: 'dialog-overview-example-dialog',
+	templateUrl: 'dialog-overview-example-dialog.html',
+	styleUrls: ['dialog-overview-example-dialog.css']
+  })
+  export class DialogOverviewExampleDialog {
+  
+	constructor(
+	  public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+	  @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  
+	printChart() {
+		window.print();
+		this.dialogRef.close();
+	}
+  
+  }

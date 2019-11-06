@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+    <div class="myChartWrapper">
+        <div class="myChart">
+  <canvas
+      baseChart
+      [chartType]="'line'"
+      [datasets]="data.chartData"
+      [labels]="data.chartLabels"
+      [legend]="data.legend"
+      [options]="data.chartOptions"
+      (chartClick)="onChartClick($event)">
+  </canvas>
+  </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-primary" mat-button (click)="printChart()">Print Chart</button>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+</div>
