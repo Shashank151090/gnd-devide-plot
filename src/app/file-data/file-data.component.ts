@@ -191,7 +191,7 @@ export class FileDataComponent implements OnInit {
 			arrayTodecode.push(this.arrayToDisplay[0]);
 			for (let i=0; i<arrayTodecode[0].length; i++) {
 				this.A4Data.push(arrayTodecode[0][i][3]);
-				this.timeStamp.push(arrayTodecode[0][i][1]);
+				this.timeStamp = (arrayTodecode[0][0][1]);
 			}
 			
 			// this.deviceIdFromFile = this.filteredData[0].shift();
@@ -208,7 +208,7 @@ export class FileDataComponent implements OnInit {
 		for (let i = 0; i < data.length; i++) {
 			if (typeof (data[i]) == "string" && data[i].startsWith('A4')) {
 				this.decodedA4Data[i] = this.extractService.extractA4Data(data[i]);
-				this.decodedA4Data[i].time = this.timeStamp[i];
+				this.decodedA4Data[0].time = this.timeStamp;
       } 
     }
 	console.log("A4 decoded data: ",this.decodedA4Data);
@@ -237,9 +237,10 @@ export class FileDataComponent implements OnInit {
 		let locationFrame = [];
 		let lbsFrame = [];
 		let debugFrame = [];
+		let time = this.decodedA4Data[0].time;
+		let ust= Math.round(new Date(time).getTime());
 		for (let i=0; i< this.decodedA4Data.length; i++) {
-			let time = this.decodedA4Data[i].time;
-			let ust= Math.round(new Date(time).getTime());
+			
 			for (let j=0;j<(this.decodedA4Data[i].extractedData).length; j++) {
 				
 				tempFrame.push(this.decodedA4Data[i].extractedData[j].temp);
